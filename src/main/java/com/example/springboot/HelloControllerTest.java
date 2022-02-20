@@ -22,7 +22,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 public class HelloControllerTest {
 
     @Autowired
-    private MockMvc mvc;
+    private MockMvc mvc; //when we ran the test, the mvc field was null - not sure why. Trying to invoke this on line
+    //29 but mvc is null.
 
     @Test
     public void getHello() throws Exception {
