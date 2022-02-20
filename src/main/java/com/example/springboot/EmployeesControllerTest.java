@@ -38,6 +38,6 @@ public class EmployeesControllerTest {
         //Assert
         //Check employee was added
         //verify the data access layer was called with the correct parameters.
-        verify(employeeRepository, times(1)).addEmployee(any());
+        verify(employeeRepository, times(1)).addEmployee(employee);
     }
 }

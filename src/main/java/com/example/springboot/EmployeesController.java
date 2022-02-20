@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EmployeesController {
-
-  private EmployeeRepository employeeRepositoryField;
+    private final EmployeeRepository employeeRepositoryField;
 
     public EmployeesController(EmployeeRepository employeeRepository) {
         employeeRepositoryField = employeeRepository;
@@ -21,8 +20,7 @@ public class EmployeesController {
     }
 
     public void addEmployee(Employee employee) {
-       employeeRepositoryField.addEmployee(null);
-
+       employeeRepositoryField.addEmployee(employee);
     }
 
 }
