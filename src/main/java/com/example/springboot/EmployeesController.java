@@ -16,7 +16,6 @@ public class EmployeesController {
     @GetMapping("/Employees")
     public Employee[] index(){
         return employeeRepositoryField.listEmployee();
-
     }
 
     public void addEmployee(Employee employee) {

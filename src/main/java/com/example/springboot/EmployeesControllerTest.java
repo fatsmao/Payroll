@@ -14,26 +14,26 @@ public class EmployeesControllerTest {
     @Test
     public static void returnsListOfEmployees(){
         //Arrange
-        EmployeeRepository employeeRepository = mock(EmployeeDataAccessService.class);
-        EmployeesController employeesController = new EmployeesController(employeeRepository);
-        //Action
-        Employee[] employees = employeesController.index();
-        //Assert
-        assertEquals("Ned", employees[0].getName());
-        //verify(employeeRepository, (VerificationMode) Arrays.stream(employees).sequential());
-        verify(employeeRepository, times(1)).listEmployee();
-    }
-
-    @Test
-    public static void returnsCorrectHardCodedEmployeeTwo(){
-        //Arrange
         EmployeeRepository employeeRepository = mock(EmployeeRepository.class);
         EmployeesController employeesController = new EmployeesController(employeeRepository);
+        Employee[] expectedEmployees = {new Employee("Ned")};
+        when(employeeRepository.listEmployee()).thenReturn(expectedEmployees);
         //Action
-        Employee[] employees = employeesController.index();
+        Employee[] actualEmployees = employeesController.index();
         //Assert
-        assertEquals("Fatma", employees[1].getName());
+        assertEquals("Ned", actualEmployees[0].getName());
     }
+
+//    @Test
+//    public static void returnsCorrectHardCodedEmployeeTwo(){
+//        //Arrange
+//        EmployeeRepository employeeRepository = mock(EmployeeRepository.class);
+//        EmployeesController employeesController = new EmployeesController(employeeRepository);
+//        //Action
+//        Employee[] employees = employeesController.index();
+//        //Assert
+//        assertEquals("Fatma", employees[1].getName());
+//    }
 
     @Test
     public static void dataAccessLayerReceivesCorrectValue(){
