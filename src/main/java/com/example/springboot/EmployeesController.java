@@ -3,6 +3,8 @@ package com.example.springboot;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class EmployeesController {
     private final EmployeeRepository employeeRepositoryField;
@@ -13,10 +15,8 @@ public class EmployeesController {
 
     @GetMapping("/Employees")
     public Employee[] index(){
-        Employee[] employees = new Employee[2];
-        employees[0] = new Employee("Ned");
-        employees[1] = new Employee("Fatma");
-        return employees;
+        return employeeRepositoryField.listEmployee();
+
     }
 
     public void addEmployee(Employee employee) {

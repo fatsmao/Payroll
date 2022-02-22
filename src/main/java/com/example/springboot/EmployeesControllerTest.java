@@ -1,23 +1,34 @@
 package com.example.springboot;
 import static org.junit.Assert.*;
+
+import org.mockito.verification.VerificationMode;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.annotations.Test;
+
+import java.util.Arrays;
+
 import static org.mockito.Mockito.*;
 
+@SpringBootTest
 public class EmployeesControllerTest {
     @Test
-    public static void returnsCorrectHardCodedEmployeeOne(){
+    public static void returnsListOfEmployees(){
         //Arrange
-        EmployeesController employeesController = new EmployeesController(null);
+        EmployeeRepository employeeRepository = mock(EmployeeDataAccessService.class);
+        EmployeesController employeesController = new EmployeesController(employeeRepository);
         //Action
         Employee[] employees = employeesController.index();
         //Assert
         assertEquals("Ned", employees[0].getName());
+        //verify(employeeRepository, (VerificationMode) Arrays.stream(employees).sequential());
+        verify(employeeRepository, times(1)).listEmployee();
     }
 
     @Test
     public static void returnsCorrectHardCodedEmployeeTwo(){
         //Arrange
-        EmployeesController employeesController = new EmployeesController(null);
+        EmployeeRepository employeeRepository = mock(EmployeeRepository.class);
+        EmployeesController employeesController = new EmployeesController(employeeRepository);
         //Action
         Employee[] employees = employeesController.index();
         //Assert
