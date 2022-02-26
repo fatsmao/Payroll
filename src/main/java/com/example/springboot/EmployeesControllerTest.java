@@ -14,10 +14,10 @@ public class EmployeesControllerTest {
     @Test
     public static void returnsListOfEmployees(){
         //Arrange
-        EmployeeRepository employeeRepository = mock(EmployeeRepository.class);
-        EmployeesController employeesController = new EmployeesController(employeeRepository);
+        EmployeeRepository employeeRepositoryMock = mock(EmployeeRepository.class);
+        EmployeesController employeesController = new EmployeesController(employeeRepositoryMock);
         Employee[] expectedEmployees = {new Employee("Ned")};
-        when(employeeRepository.listEmployee()).thenReturn(expectedEmployees);
+        when(employeeRepositoryMock.listEmployee()).thenReturn(expectedEmployees);
         //Action
         Employee[] actualEmployees = employeesController.index();
         //Assert

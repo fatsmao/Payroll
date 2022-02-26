@@ -11,4 +11,9 @@ public class Employee {
         return name;
     }
 
+    public Employee(){}
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
