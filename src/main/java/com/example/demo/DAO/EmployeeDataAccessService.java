@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class EmployeeDataAccessService implements EmployeeDAO {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public EmployeeDataAccessService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -18,10 +18,10 @@ public class EmployeeDataAccessService implements EmployeeDAO {
 
     @Override
     public int addEmployee(Employee employee) {
-        String sql = ""
+        String sql = """
         INSERT INTO employee (name, role, hourly_salary)
         VALUES (?,?,?)
-        "";
+        """;
 
         int employeeFields = jdbcTemplate.update(
                 sql,
@@ -34,10 +34,10 @@ public class EmployeeDataAccessService implements EmployeeDAO {
 
     @Override
     public List<Employee> displayEmployee() {
-        String sql = ""
+        String sql = """
         SELECT id, name, role, hourly_salary, hours_worked
         FROM employee
-        "";
+        """;
 
         RowMapper<Employee> employeeRowMapper = ((rs, rowNum) -> {
             Employee currentEmployees = new Employee(
@@ -56,20 +56,20 @@ public class EmployeeDataAccessService implements EmployeeDAO {
 
     @Override
     public int deleteEmployee(Integer ID) {
-        String sql = ""
+        String sql = """
                 DELETE FROM employee
                 WHERE id = ?
-        "";
-        return jdbcTemplate.update(sql, id);
+        """;
+        return jdbcTemplate.update(sql, ID);
     }
 
     @Override
     public int updateEmployee(Employee employee) {
-        String sql = ""
+        String sql = """
         UPDATE employee
         SET(name, role, hourly_salary, hours_worked) = (?,?,?,?)
         WHERE id = ?
-        "";
+        """;
         return jdbcTemplate.update(
                 sql,
                 employee.getName(),
