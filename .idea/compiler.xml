@@ -9,9 +9,11 @@
         <module name="spring-boot-initial" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="15" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring-boot" options="-parameters" />
       <module name="spring-boot-initial" options="-parameters" />
     </option>
   </component>
