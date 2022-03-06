@@ -40,10 +40,7 @@ public class AdminService {
                     return true;
                 }
             }
-            if (hasLetter && hasDigit) {
-            } else {
-                throw new IllegalStateException("Your password must include numbers and letters");
-            }
+
         } else {
             throw new IllegalStateException("Your password must have at least 8 characters");
         }
